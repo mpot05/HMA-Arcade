@@ -17,9 +17,9 @@
 var config = {
     type: Phaser.AUTO,
     // was 800
-    width: 800,
+    width: 1250,
     // was 600
-    height: 600,
+    height: 720,
     physics: {
         default: 'arcade',
         arcade: {
@@ -47,7 +47,7 @@ var game = new Phaser.Game(config);
 
 function preload ()
 {
-    this.load.image('sky', 'assets/sky.png');
+    this.load.image('sky', 'assets/newBackground.png');
     this.load.image('ground', 'assets/platform.png');
     this.load.image('star', 'assets/star.png');
     this.load.image('bomb', 'assets/bomb.png');
@@ -57,7 +57,6 @@ function preload ()
 function create ()
 {
     //  A simple background for our game
-    // was 400, 300
     this.add.image(400, 300, 'sky');
 
     //  The platforms group contains the ground and the 2 ledges we can jump on
@@ -65,15 +64,17 @@ function create ()
 
     //  Here we create the ground.
     //  Scale it to fit the width of the game (the original sprite is 400x32 in size)
-    platforms.create(400, 568, 'ground').setScale(2).refreshBody();
+    platforms.create(400, 700, 'ground').setScale(4.3).refreshBody();
 
     //  Now let's create some ledges
-    platforms.create(600, 400, 'ground');
-    platforms.create(50, 250, 'ground');
-    platforms.create(750, 220, 'ground');
+    platforms.create(1100, 200, 'ground');
+    platforms.create(1100, 420, 'ground');
+    platforms.create(550, 340, 'ground');
+    platforms.create(150, 200, 'ground');
+    platforms.create(150, 500, 'ground');
 
     // The player and its settings
-    player = this.physics.add.sprite(100, 450, 'dude');
+    player = this.physics.add.sprite(0, 500, 'dude');
 
     //  Player physics properties. Give the little guy a slight bounce.
     player.setBounce(0.2);
@@ -106,7 +107,7 @@ function create ()
     //  Some stars to collect, 12 in total, evenly spaced 70 pixels apart along the x axis
     stars = this.physics.add.group({
         key: 'star',
-        repeat: 11,
+        repeat: 17,
         setXY: { x: 12, y: 0, stepX: 70 }
     });
 
